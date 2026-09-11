@@ -8,7 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 # --- CONFIGURATION ---
-VIDEO_URL = os.getenv("VIDEO_URL", "https://www.youtube.com/watch?v=YOUR_VIDEO_ID")
+VIDEO_URL = os.getenv("VIDEO_URL", "https://youtube.com/shorts/GaHmkV-Lcx8?si=SDTCq_kxz45qLcsH")
 TARGET_HOURS = int(os.getenv("TARGET_HOURS", "100"))
 NUM_INSTANCES = int(os.getenv("NUM_INSTANCES", "3"))
 TOTAL_SECONDS_NEEDED = TARGET_HOURS * 3600
