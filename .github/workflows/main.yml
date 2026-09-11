@@ -1,14 +1,12 @@
-name: YouTube Watch Time Bot
+name: YouTube Watch Time Bot - Continuous
 
 on:
-  schedule:
-    # Run every 6 hours (adjust as needed)
-    - cron: '0 */6 * * *'
-  workflow_dispatch:  # Allows manual trigger from GitHub UI
+  workflow_dispatch:  # Manual trigger only
 
 jobs:
   run-bot:
     runs-on: ubuntu-latest
+    timeout-minutes: 360  # 6 hours max
     
     steps:
     - name: Checkout code
