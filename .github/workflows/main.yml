@@ -1,7 +1,9 @@
-name: YouTube Watch Time Bot - Continuous
+name: YouTube Watch Time Bot
 
 on:
-  workflow_dispatch:  # Manual trigger only
+  schedule:
+    - cron: '0 */6 * * *'  # Run every 6 hours
+  workflow_dispatch:  # Manual trigger
 
 jobs:
   run-bot:
@@ -19,15 +21,12 @@ jobs:
     
     - name: Install Chrome
       run: |
-        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /usr/share/keyrings/googlechrom-keyring.gpg
-        echo "deb [arch=amd64 signed-by=/usr/share/keyrings/googlechrom-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
         sudo apt-get update
-        sudo apt-get install -y google-chrome-stable
+        sudo apt-get install -y chromium-browser chromium-chromedriver
     
     - name: Install dependencies
       run: |
-        pip install selenium==4.15.2
-        pip install webdriver-manager==4.0.1
+        pip install selenium>=4.15.0
     
     - name: Run YouTube Bot
       env:
@@ -36,4 +35,3 @@ jobs:
         NUM_INSTANCES: ${{ secrets.NUM_INSTANCES }}
       run: |
         python main.py
-        
